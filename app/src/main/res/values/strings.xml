@@ -7,6 +7,7 @@
     <string name="addButton">Save</string>
     <string name="editButton">Edit</string>
     <string name="deleteButton">Delete</string>
+    <string name="enterButton">Access</string>
     <string name="text_view_description">Here you can add some thoughts</string>
     <string name="textViewResult">Content</string>
 </resources>
