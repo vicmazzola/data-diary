@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Create or open database and table
-        database = openOrCreateDatabase("tasksDB", MODE_PRIVATE, null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS tasks(" +
+        database = openOrCreateDatabase("diaryDB", MODE_PRIVATE, null);
+        database.execSQL("CREATE TABLE IF NOT EXISTS diary(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "task_title VARCHAR, " +
+                "content_title VARCHAR, " +
                 "due_date VARCHAR, " +
                 "mood VARCHAR, " +
                 "content VARCHAR)");
@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 String mood = editMood.getText().toString();
                 String content = editContent.getText().toString();
 
-                database.execSQL("INSERT INTO tasks (task_title, due_date, mood, content) VALUES ('"
+                database.execSQL("INSERT INTO diary (content_title, due_date, mood, content) VALUES ('"
                         + title + "', '"
                         + date + "', '"
                         + mood + "', '"
                         + content + "')");
 
-                Toast.makeText(this, "Task added!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Content added!", Toast.LENGTH_LONG).show();
                 editTitle.setText("");
                 editDate.setText("");
                 editMood.setText("");
@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
                 String content = editContent.getText().toString();
 
                 // Update the record with the matching title (for demo purposes)
-                database.execSQL("UPDATE tasks SET due_date='" + date + "', mood='" + mood +
-                        "', content='" + content + "' WHERE task_title='" + title + "'");
-                Toast.makeText(this, "Task updated!", Toast.LENGTH_LONG).show();
+                database.execSQL("UPDATE diary SET due_date='" + date + "', mood='" + mood +
+                        "', content='" + content + "' WHERE content_title='" + title + "'");
+                Toast.makeText(this, "Diary updated!", Toast.LENGTH_LONG).show();
                 clearInputFields();
-                loadTasks();
+                loadContent();
             } catch (Exception e) {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -99,22 +99,21 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String title = editTitle.getText().toString();
                 // Delete the record with the matching title
-                database.execSQL("DELETE FROM tasks WHERE task_title='" + title + "'");
-                Toast.makeText(this, "Task deleted!", Toast.LENGTH_LONG).show();
+                database.execSQL("DELETE FROM diary WHERE content_title='" + title + "'");
+                Toast.makeText(this, "Content deleted!", Toast.LENGTH_LONG).show();
                 clearInputFields();
-                loadTasks();
+                loadContent();
             } catch (Exception e) {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-        loadTasks();
-
+;
+        loadContent();
 
     }
 
-    private void loadTasks() {
-        Cursor cursor = database.rawQuery("SELECT * FROM tasks", null);
+    private void loadContent() {
+        Cursor cursor = database.rawQuery("SELECT * FROM diary", null);
         StringBuilder result = new StringBuilder();
         while (cursor.moveToNext()) {
             result.append("Title: ").append(cursor.getString(1))
