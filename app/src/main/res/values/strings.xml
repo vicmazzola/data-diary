@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DataDiary</string>
+    <string name="editTitle">Enter Title</string>
+    <string name="editDate">Date</string>
+    <string name="editMood">Mood</string>
+    <string name="editContent">Entry</string>
+    <string name="saveButton">Save</string>
+    <string name="loadButton">Load</string>
+    <string name="text_view_description">Here you can add some thoughts</string>
+    <string name="textViewResult">Entries</string>
 </resources>
