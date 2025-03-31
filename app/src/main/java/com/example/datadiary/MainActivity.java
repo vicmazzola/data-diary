@@ -30,7 +30,24 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Create or open database and table
+        database = openOrCreateDatabase("tasksDB", MODE_PRIVATE, null);
+        database.execSQL("CREATE TABLE IF NOT EXISTS tasks(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "task_title VARCHAR, " +
+                "due_date VARCHAR, " +
+                "mood VARCHAR, " +
+                "content VARCHAR)");
 
+        // Reference UI elements
+        editTitle = findViewById(R.id.editTitle);
+        editDate = findViewById(R.id.editDate);
+        editMood = findViewById(R.id.editMood);
+        editContent = findViewById(R.id.editContent);
+        addButton = findViewById(R.id.addButton);
+        editButton = findViewById(R.id.editButton);
+        deleteButton = findViewById(R.id.deleteButton);
+        textViewResult = findViewById(R.id.textViewResult);
 
 
     }

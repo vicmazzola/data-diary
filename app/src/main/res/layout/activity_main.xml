@@ -118,21 +118,29 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/saveButton"
+            android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="8dp"
-            android:text="@string/saveButton" />
+            android:text="@string/addButton" />
 
 
         <Button
-            android:id="@+id/loadButton"
+            android:id="@+id/editButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="8dp"
-            android:text="@string/loadButton" />
+            android:text="@string/editButton" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:text="@string/deleteButton" />
 
 
     </LinearLayout>
