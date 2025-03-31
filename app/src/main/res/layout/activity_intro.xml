@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/purple_gradient"
     android:orientation="vertical"
     android:padding="24dp">
@@ -18,17 +19,31 @@
 
         />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="82dp" />
 
-    <Button
-        android:id="@+id/deleteButton"
+    <ImageView
+        android:src="@drawable/list2"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="58dp"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="182dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="38dp"
         android:textSize="42sp"
-        android:text="@string/enterButton" />
+        android:text="@string/enterButton"
+        app:cornerRadius="24dp"
+        app:backgroundTint="@color/add_button_color" />
 
 </LinearLayout>

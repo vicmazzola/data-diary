@@ -13,8 +13,8 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        Button startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(v -> {
+        Button enterButton = findViewById(R.id.enterButton);
+        enterButton.setOnClickListener(v -> {
             Intent intent = new Intent(IntroActivity.this, MainActivity.class);
             startActivity(intent);
             finish(); // optional: closes IntroActivity
