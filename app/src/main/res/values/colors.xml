@@ -4,4 +4,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_purple">#B772C4</color>
     <color name="dark_purple">#7B1FA2</color>
+
+    <color name="add_button_color">#7437A9</color>
+    <color name="edit_button_color">#7437A9</color>
+    <color name="delete_button_color">#B03E5B</color>
+
+
+
 </resources>

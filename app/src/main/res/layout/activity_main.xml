@@ -2,21 +2,22 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
-    <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@drawable/purple_gradient"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="18dp"
             android:text="@string/app_name"
             android:textColor="@color/white"
@@ -40,8 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="18dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="18dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/editTitle"
@@ -58,10 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="8dp"
+            android:digits="0123456789/"
             android:hint="@string/editDate"
             android:inputType="date"
             android:minHeight="48dp"
@@ -76,8 +78,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/editMood"
@@ -94,8 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/editContent"
@@ -112,35 +114,46 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="12dp"
+            android:layout_margin="18dp"
             android:text="@string/textViewResult"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_margin="8dp"
-            android:text="@string/addButton" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/addButton"
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/add_button_color" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/editButton"
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/edit_button_color" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/deleteButton"
+                app:cornerRadius="16dp"
+                app:backgroundTint="@color/delete_button_color" />
 
 
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:text="@string/editButton" />
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="8dp"
-            android:text="@string/deleteButton" />
+        </LinearLayout>
 
 
     </LinearLayout>

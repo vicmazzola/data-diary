@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.deleteButton);
         textViewResult = findViewById(R.id.textViewResult);
 
+
         // Add content logic
         addButton.setOnClickListener(v -> {
             try {
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 editDate.setText("");
                 editMood.setText("");
                 editContent.setText("");
+                loadContent();
             } catch (Exception e) {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder result = new StringBuilder();
         while (cursor.moveToNext()) {
             result.append("Title: ").append(cursor.getString(1))
-                    .append("\nDue Date: ").append(cursor.getString(2))
+                    .append("\nDate: ").append(cursor.getString(2))
                     .append("\nMood: ").append(cursor.getString(3))
                     .append("\nContent: ").append(cursor.getString(4))
                     .append("\n\n");
