@@ -18,9 +18,12 @@ import com.example.datadiary.model.DiaryEntry;
 
 public class MainActivity extends AppCompatActivity {
 
+    // UI ELEMENTS
     EditText editTitle, editDate, editMood, editContent;
     Button addButton, editButton, deleteButton;
     TextView textViewResult;
+
+    // DATABASE INSTANCE
     SQLiteDatabase database;
 
     @Override
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Create or open database and table
+        // CREATE OR OPEN DATABASE AND TABLE
         database = openOrCreateDatabase("diaryDB", MODE_PRIVATE, null);
         database.execSQL("CREATE TABLE IF NOT EXISTS diary(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 "mood VARCHAR, " +
                 "content VARCHAR)");
 
-        // Reference UI elements
+        // REFERENCE UI ELEMENTS
         editTitle = findViewById(R.id.editTitle);
         editDate = findViewById(R.id.editDate);
         editMood = findViewById(R.id.editMood);
@@ -54,17 +57,11 @@ public class MainActivity extends AppCompatActivity {
         textViewResult = findViewById(R.id.textViewResult);
 
 
-        // Add content logic
+        // ADD CONTENT LOGIC
         addButton.setOnClickListener(v -> {
             try {
 
-                DiaryEntry entry = new DiaryEntry(
-                        editTitle.getText().toString(),
-                        editDate.getText().toString(),
-                        editMood.getText().toString(),
-                        editContent.getText().toString()
-                );
-
+                DiaryEntry entry = getEntryFromFields();
 
                 database.execSQL("INSERT INTO diary (content_title, due_date, mood, content) VALUES ('"
                         + entry.getTitle() + "', '"
@@ -83,18 +80,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Edit content logic
+        // EDIT CONTENT LOGIC
         editButton.setOnClickListener(v -> {
             try {
 
-                DiaryEntry entry = new DiaryEntry(
-                        editTitle.getText().toString(),
-                        editDate.getText().toString(),
-                        editMood.getText().toString(),
-                        editContent.getText().toString()
-                );
+                DiaryEntry entry = getEntryFromFields();
 
-                // Update the record with the matching title (for demo purposes)
+                // UPDATE THE RECORD WITH THE MATCHING TITLE
                 database.execSQL("UPDATE diary SET due_date='" + entry.getDate() + "', mood='" + entry.getMood() +
                         "', content='" + entry.getContent() + "' WHERE content_title='" + entry.getTitle() + "'");
                 Toast.makeText(this, "Diary updated!", Toast.LENGTH_LONG).show();
@@ -105,16 +97,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Delete content logic
+        // DELETE CONTENT LOGIC
         deleteButton.setOnClickListener(v -> {
             try {
 
-                DiaryEntry entry = new DiaryEntry(
-                        editTitle.getText().toString(),
-                        editDate.getText().toString(),
-                        editMood.getText().toString(),
-                        editContent.getText().toString()
-                );
+                DiaryEntry entry = getEntryFromFields();
+
                 database.execSQL("DELETE FROM diary WHERE content_title='" + entry.getTitle() + "'");
                 Toast.makeText(this, "Content deleted!", Toast.LENGTH_LONG).show();
                 clearInputFields();
@@ -123,11 +111,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        ;
+
+        // INITIAL LOAD OF ALL ENTRIES
         loadContent();
 
     }
 
+    // LOAD ENTRIES FROM DATABASE
     private void loadContent() {
         Cursor cursor = database.rawQuery("SELECT * FROM diary", null);
         StringBuilder result = new StringBuilder();
@@ -149,10 +139,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // CLEAR INPUT FIELDS AFTER ACTION
     private void clearInputFields() {
         editTitle.setText("");
         editDate.setText("");
         editMood.setText("");
         editContent.setText("");
+    }
+
+    // CREATE DIARYENTRY OBJECT FROM USER INPUT FIELDS
+    private DiaryEntry getEntryFromFields() {
+        return new DiaryEntry(
+                editTitle.getText().toString(),
+                editDate.getText().toString(),
+                editMood.getText().toString(),
+                editContent.getText().toString()
+        );
     }
 }
