@@ -37,5 +37,9 @@ public class DatabaseHelper {
 
     }
 
+    public SQLiteDatabase getDatabase() {
+        return this.database;
+    }
+
 
 }
