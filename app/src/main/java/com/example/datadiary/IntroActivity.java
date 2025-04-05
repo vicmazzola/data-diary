@@ -13,7 +13,7 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        Button enterButton = findViewById(R.id.enterButton);
+        Button enterButton = findViewById(R.id.startButton);
         enterButton.setOnClickListener(v -> {
             Intent intent = new Intent(IntroActivity.this, MainActivity.class);
             startActivity(intent);

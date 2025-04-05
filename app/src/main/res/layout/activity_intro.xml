@@ -12,38 +12,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="38dp"
+        android:layout_margin="28dp"
         android:text="@string/app_name"
         android:textColor="@color/white"
-        android:textSize="52sp"
+        android:textSize="34sp"
 
         />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="82dp" />
+        android:layout_height="22dp" />
 
     <ImageView
-        android:src="@drawable/list2"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="58dp"
-        />
+        android:layout_margin="38dp"
+        android:src="@drawable/list2" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="182dp" />
+        android:layout_height="68dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="38dp"
-        android:textSize="42sp"
         android:text="@string/enterButton"
-        app:cornerRadius="24dp"
-        app:backgroundTint="@color/add_button_color" />
+        android:textSize="22sp"
+        app:backgroundTint="@color/add_button_color"
+        app:cornerRadius="24dp" />
 
 </LinearLayout>
