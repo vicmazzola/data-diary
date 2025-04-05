@@ -56,9 +56,20 @@ public class DiaryEntry {
      *
      * @return formatted entry string
      */
-    // FORMAT WHEN GET ENTRY
+
+
     public String getFormattedEntry() {
-        return "Title: " + title + "\nDate: " + date + "\nMood: " + mood + "\nContent: " + content + "\n\n";
+        return "Title: " + getCapitalizedTitle()
+                + "\nDate: " + date
+                + "\nMood: " + mood
+                + "\nContent: " + content
+                + "\n\n";
+    }
+
+    // CUSTOM METHOD: RETURN TITLE WITH FIRST LETTER IN UPPERCASE
+    public String getCapitalizedTitle() {
+        if (title == null || title.isEmpty()) return title;
+        return title.substring(0, 1).toUpperCase() + title.substring(1);
     }
 
 
