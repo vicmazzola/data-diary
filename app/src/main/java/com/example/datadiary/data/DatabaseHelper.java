@@ -9,17 +9,18 @@ import android.database.sqlite.SQLiteDatabase;
 
 /**
  * Handles database creation and connection for the Data Diary app.
- *
  * Creates the 'diary' table if it does not exist.
- *
- * @param context the context used to open or create the database
  */
 
 public class DatabaseHelper {
-
     private Context context;
     private SQLiteDatabase database;
 
+    /**
+     * Constructs a new DatabaseHelper instance and initializes the database.
+     *
+     * @param context the context used to open or create the database
+     */
     public DatabaseHelper(Context context)
     {
         // OPEN OR CREATE THE DATABASE
