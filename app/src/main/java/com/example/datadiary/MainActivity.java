@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     // UI ELEMENTS
     EditText editTitle, editDate, editMood, editContent;
-    Button addButton, editButton, deleteButton;
+    Button addButton, loadButton, editButton, deleteButton;
     TextView textViewResult;
 
     // DATABASE INSTANCE
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         editContent = findViewById(R.id.editContent);
         addButton = findViewById(R.id.addButton);
         editButton = findViewById(R.id.editButton);
+        loadButton = findViewById(R.id.loadButton);
         deleteButton = findViewById(R.id.deleteButton);
         textViewResult = findViewById(R.id.textViewResult);
 
@@ -91,7 +92,16 @@ public class MainActivity extends AppCompatActivity {
                 editMood.setText("");
                 editContent.setText("");
 
-                // REFRESH ENTRIES DISPLAYED ON SCREEN
+
+            } catch (Exception e) {
+                // DISPLAY ERROR MESSAGE IF SOMETHING GOES WRONG
+                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //LOAD BUTTON
+        loadButton.setOnClickListener(v -> {
+            try {
                 loadContent();
             } catch (Exception e) {
                 // DISPLAY ERROR MESSAGE IF SOMETHING GOES WRONG
@@ -182,9 +192,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-        // INITIAL LOAD OF ALL ENTRIES
-        loadContent();
 
     }
 

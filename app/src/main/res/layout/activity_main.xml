@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    >
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
@@ -21,7 +22,7 @@
             android:layout_margin="18dp"
             android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="28sp"
 
             />
 
@@ -33,7 +34,7 @@
             android:layout_margin="12dp"
             android:text="@string/text_view_description"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
 
         <EditText
@@ -51,6 +52,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
+            android:background="@drawable/edit_text_background"
 
             />
 
@@ -70,6 +72,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
+            android:background="@drawable/edit_text_background"
 
             />
 
@@ -88,26 +91,89 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
+            android:background="@drawable/edit_text_background"
 
             />
 
         <EditText
             android:id="@+id/editContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:overScrollMode="always"
+            android:background="@drawable/add_content_background"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="8dp"
             android:hint="@string/editContent"
-            android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
 
             />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addButton"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="@string/addButton"
+                app:backgroundTint="@color/add_button_color"
+                app:cornerRadius="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loadButton"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/loadButton"
+                app:backgroundTint="@color/add_button_color"
+                app:cornerRadius="16dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/editButton"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="@string/editButton"
+                app:backgroundTint="@color/edit_button_color"
+                app:cornerRadius="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deleteButton"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/deleteButton"
+                app:backgroundTint="@color/delete_button_color"
+                app:cornerRadius="16dp" />
+
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/textViewResult"
@@ -118,43 +184,5 @@
             android:text="@string/textViewResult"
             android:textColor="@color/white"
             android:textSize="16sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/addButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/addButton"
-                app:cornerRadius="16dp"
-                app:backgroundTint="@color/add_button_color" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/editButton"
-                app:cornerRadius="16dp"
-                app:backgroundTint="@color/edit_button_color" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/deleteButton"
-                app:cornerRadius="16dp"
-                app:backgroundTint="@color/delete_button_color" />
-
-
-        </LinearLayout>
-
-
     </LinearLayout>
 </ScrollView>

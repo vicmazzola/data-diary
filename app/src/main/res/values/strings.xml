@@ -5,6 +5,7 @@
     <string name="editMood">Mood</string>
     <string name="editContent">Add here the content</string>
     <string name="addButton">Save</string>
+    <string name="loadButton">Read Notes</string>
     <string name="editButton">Edit</string>
     <string name="deleteButton">Delete</string>
     <string name="enterButton">Access</string>
