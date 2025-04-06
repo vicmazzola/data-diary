@@ -66,21 +66,35 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(v -> {
             try {
 
+                // VALIDATE IF DATE HAS CORRECT LENGTH AND FORMAT (dd/MM/yyyy)
+                String dateInput = editDate.getText().toString().trim();
+
+                if (dateInput.length() != 10 || !dateInput.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                    Toast.makeText(this, "Please enter a valid date (dd/MM/yyyy)", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // GET USER INPUT AND CREATE A DIARY ENTRY OBJECT
                 DiaryEntry entry = getEntryFromFields();
 
+                // INSERT THE ENTRY INTO THE DATABASE
                 database.execSQL("INSERT INTO diary (content_title, due_date, mood, content) VALUES ('"
                         + entry.getTitle() + "', '"
                         + entry.getDate() + "', '"
                         + entry.getMood() + "', '"
                         + entry.getContent() + "')");
 
+                // SHOW CONFIRMATION AND CLEAR INPUT FIELDS
                 Toast.makeText(this, "Content added!", Toast.LENGTH_LONG).show();
                 editTitle.setText("");
                 editDate.setText("");
                 editMood.setText("");
                 editContent.setText("");
+
+                // REFRESH ENTRIES DISPLAYED ON SCREEN
                 loadContent();
             } catch (Exception e) {
+                // DISPLAY ERROR MESSAGE IF SOMETHING GOES WRONG
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -123,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 isFormatting = true;
 
                 // REMOVE SLASHES BEFORE FORMATTING
-                String input = s.toString().replace("/","");
+                String input = s.toString().replace("/", "");
                 StringBuilder formatted = new StringBuilder();
 
                 // ADD SLASHES AT POSITIONS 2 AND 5 (FOR dd/MM/yyyy FORMAT)
@@ -142,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 // SHOW ALERT IF FORMAT IS INVALID
-                if (formatted.length() >= 6 && (formatted.length() != 10 || !formatted.toString().matches("\\d{2}/\\d{2}/\\d{4}"))) {
+                if (formatted.length() == 10 && !formatted.toString().matches("\\d{2}/\\d{2}/\\d{4}")) {
                     new AlertDialog.Builder(MainActivity.this)
                             .setTitle("Invalid Date")
                             .setMessage("Expected format: dd/MM/yyyy\nYou entered: " + formatted)
@@ -213,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Returns a DiaryEntry based on EditText input values.
+     *
      * @return the entry filled with title, date, mood and content.
      */
 
