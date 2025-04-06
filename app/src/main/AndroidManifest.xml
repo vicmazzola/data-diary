@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataDiary"
         tools:targetApi="31">
+
+        <!--   INITIAL SCREEN  -->
         <activity
             android:name=".IntroActivity"
             android:exported="true">
@@ -21,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--   MAIN SCREEN  -->
+        <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>

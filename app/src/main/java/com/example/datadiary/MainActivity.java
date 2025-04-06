@@ -1,8 +1,11 @@
 package com.example.datadiary;
 
+import android.app.AlertDialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,6 +18,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.datadiary.model.DiaryEntry;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,6 +102,58 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //EDIT DATE LOGIC
+        editDate.addTextChangedListener(new TextWatcher() {
+
+            private boolean isFormatting;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isFormatting) return;
+                isFormatting = true;
+
+                // REMOVE SLASHES BEFORE FORMATTING
+                String input = s.toString().replace("/","");
+                StringBuilder formatted = new StringBuilder();
+
+                // ADD SLASHES AT POSITIONS 2 AND 5 (FOR dd/MM/yyyy FORMAT)
+                for (int i = 0; i < input.length() && i < 8; i++) {
+                    formatted.append(input.charAt(i));
+                    if ((i == 1 || i == 3) && i != input.length() - 1) {
+                        formatted.append("/");
+                    }
+                }
+
+                // UPDATE THE TEXT FIELD WITHOUT TRIGGERING ANOTHER TEXT CHANGE
+                editDate.removeTextChangedListener(this);
+                editDate.setText(formatted.toString());
+                editDate.setSelection(formatted.length());
+                editDate.addTextChangedListener(this);
+
+
+                // SHOW ALERT IF FORMAT IS INVALID
+                if (formatted.length() >= 6 && (formatted.length() != 10 || !formatted.toString().matches("\\d{2}/\\d{2}/\\d{4}"))) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Invalid Date")
+                            .setMessage("Expected format: dd/MM/yyyy\nYou entered: " + formatted)
+                            .setPositiveButton("OK", null)
+                            .show();
+                }
+                isFormatting = false;
+            }
+        });
+
+
         // DELETE CONTENT LOGIC
         deleteButton.setOnClickListener(v -> {
             try {
@@ -117,7 +174,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // LOAD ENTRIES FROM DATABASE
+    /**
+     * Loads all diary entries from the database and displays them in the result TextView.
+     */
+
     private void loadContent() {
         Cursor cursor = database.rawQuery("SELECT * FROM diary", null);
         StringBuilder result = new StringBuilder();
@@ -139,6 +199,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Clears all EditText input fields after add, edit or delete operations.
+     */
+
     // CLEAR INPUT FIELDS AFTER ACTION
     private void clearInputFields() {
         editTitle.setText("");
@@ -146,6 +210,11 @@ public class MainActivity extends AppCompatActivity {
         editMood.setText("");
         editContent.setText("");
     }
+
+    /**
+     * Returns a DiaryEntry based on EditText input values.
+     * @return the entry filled with title, date, mood and content.
+     */
 
     // CREATE DIARYENTRY OBJECT FROM USER INPUT FIELDS
     private DiaryEntry getEntryFromFields() {
