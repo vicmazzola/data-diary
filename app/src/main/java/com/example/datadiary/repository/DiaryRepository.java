@@ -4,23 +4,31 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.datadiary.dao.DiaryDAO;
 import com.example.datadiary.data.DatabaseHelper;
 import com.example.datadiary.model.DiaryEntry;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class DiaryRepository {
+/**
+ * Implements the DiaryDAO interface to handle all data operations related to diary entries.
+ * This class communicates directly with the SQLite database using SQL commands.
+ */
+public class DiaryRepository implements DiaryDAO {
 
     private SQLiteDatabase database;
 
+    // INITIALIZE DATABASE CONNECTION USING THE DATABASE HELPER
     public DiaryRepository(Context context) {
         DatabaseHelper helper = new DatabaseHelper(context);
         this.database = helper.getDatabase();
     }
 
-    public void insertEntry(DiaryEntry entry) {
-
+    @Override
+    public void insert(DiaryEntry entry) {
+        // INSERT ENTRY INTO DATABASE
         String sql = "INSERT INTO diary (content_title, due_date, mood, content) VALUES (?,?,?,?)";
         database.execSQL(sql, new Object[]{
                 entry.getTitle(),
@@ -28,11 +36,24 @@ public class DiaryRepository {
                 entry.getMood(),
                 entry.getContent()
         });
+
     }
 
-    public List<DiaryEntry> getAllEntries(){
+    @Override
+    public void update(DiaryEntry entry) {
+        // TO DO: IMPLEMENT UPDATE LOGIC
+    }
+
+    @Override
+    public void delete(DiaryEntry entry) {
+        // TO DO: IMPLEMENT DELETE LOGIC
+    }
+
+    @Override
+    public List<DiaryEntry> getAll() {
+        // FETCH ALL ENTRIES FROM DATABASE
         List<DiaryEntry> entries = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM diary",null);
+        Cursor cursor = database.rawQuery("SELECT * FROM diary", null);
 
         if (cursor.moveToFirst()) {
             do {
