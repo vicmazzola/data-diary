@@ -1,25 +1,24 @@
 # DataDiary
 
-A simple Android diary app that lets you add, edit, delete, and view tasks using a local SQLite database.
+DataDiary is a simple Android app for writing, editing, and managing personal diary entries using a local SQLite database. It's built with Java and follows object-oriented principles like inheritance and encapsulation.
+
 
 ## Features
 
-- **Add Tasks:** Insert tasks with a title, date, mood, and content.
-- **Edit Tasks:** Update task details.
-- **Delete Tasks:** Remove tasks.
-- **View Tasks:** Display all tasks in a clear format.
+- **Add Entry** — Save diary entries with title, date, mood, and content
+- **Edit Entry** — Update existing entries based on title
+- **Delete Entry** — Remove specific entries
+- **View All Entries** — Display all saved records in a formatted view
+- **Date Formatting** — Smart formatting and validation for dates (`dd/MM/yyyy`)
+- **Polymorphic Structure** — Entries are managed using a generic `Entry` superclass
 
 ## Tech Stack
 
-- **Programming Language:** Java
+- **Language:** Java
 - **IDE:** Android Studio
 - **Database:** SQLite
-- **Libraries:**
-    - **AppCompat** v1.7.0
-    - **Material Components** v1.12.0
-    - **Activity** v1.10.1
-    - **ConstraintLayout** v2.2.1
-    - **JUnit** v4.13.2, **Test Ext JUnit** v1.2.1, **Espresso** v3.6.1
+- **Architecture:** Object-Oriented Programming (OOP)
+
 
 ## ▶️ How to Run
 
