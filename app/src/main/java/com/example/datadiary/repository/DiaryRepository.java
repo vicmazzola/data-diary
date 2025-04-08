@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.datadiary.dao.DiaryDAO;
 import com.example.datadiary.data.DatabaseHelper;
 import com.example.datadiary.model.DiaryEntry;
+import com.example.datadiary.model.Entry;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +51,8 @@ public class DiaryRepository implements DiaryDAO {
     }
 
     @Override
-    public List<DiaryEntry> getAll() {
+
+    public List<Entry> getAll() {
         // FETCH ALL ENTRIES FROM DATABASE
         List<DiaryEntry> entries = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM diary", null);

@@ -18,8 +18,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.datadiary.model.DiaryEntry;
+import com.example.datadiary.model.Entry;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -108,6 +111,28 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+        // TODO: Refactor display to support multiple Entry types (e.g., TaskEntry, NoteEntry) using polymorphism
+
+//      Current implementation only uses DiaryEntry, but Entry list already allows extension
+//        loadButton.setOnClickListener(v -> {
+//            try {
+//                DiaryRepository repo = new DiaryRepository(this);
+//
+//                List<Entry> entries = repo.getAll(); // agora é polimórfico
+//
+//                StringBuilder result = new StringBuilder();
+//                for (Entry entry : entries) {
+//                    result.append(entry.getFormattedEntry());
+//                }
+//
+//                textViewResult.setText(result.toString());
+//
+//            } catch (Exception e) {
+//                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
+
 
         // EDIT CONTENT LOGIC
         editButton.setOnClickListener(v -> {

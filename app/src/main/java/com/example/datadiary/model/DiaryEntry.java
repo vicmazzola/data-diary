@@ -1,76 +1,58 @@
 package com.example.datadiary.model;
 
-
 /**
- * Represents a single diary entry containing title, date, mood, and content.
- * Used to encapsulate and format diary data inside the Data Diary app.
+ * Represents a single diary entry with an additional mood attribute.
+ * Inherits common fields and behavior from the Entry superclass.
  */
+public class DiaryEntry extends Entry {
 
-public class DiaryEntry {
-
-    //ATTRIBUTES
-    private String title;
-    private String date;
+    /** Mood of the diary entry */
     private String mood;
-    private String content;
-
 
     /**
-     * Creates a new DiaryEntry with all required fields.
+     * Constructs a DiaryEntry with title, date, content, and mood.
      *
-     * @param title   the title of the diary entry
+     * @param title   the title of the entry
      * @param date    the date of the entry
      * @param mood    the mood of the user
      * @param content the main content of the diary
      */
-
-    // CONSTRUCTORS
     public DiaryEntry(String title, String date, String mood, String content) {
-        this.title = title;
-        this.date = date;
+        super(title, date, content); // Call the constructor of Entry
         this.mood = mood;
-        this.content = content;
     }
 
-
-    //GETTERS
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
+    /**
+     * Returns the mood of the diary entry.
+     *
+     * @return the mood
+     */
     public String getMood() {
         return mood;
     }
 
-    public String getContent() {
-        return content;
-    }
-
     /**
-     * Returns a formatted string with all entry details.
-     * Useful for displaying entries in the UI.
+     * Returns a formatted string with all entry details, including mood.
      *
      * @return formatted entry string
      */
-
-
+    @Override
     public String getFormattedEntry() {
         return "Title: " + getCapitalizedTitle()
-                + "\nDate: " + date
+                + "\nDate: " + getDate()
                 + "\nMood: " + mood
-                + "\nContent: " + content
+                + "\nContent: " + getContent()
                 + "\n\n";
     }
 
-    // CUSTOM METHOD: RETURN TITLE WITH FIRST LETTER IN UPPERCASE
+    /**
+     * Capitalizes the first letter of the title.
+     *
+     * @return capitalized title
+     */
     public String getCapitalizedTitle() {
+        String title = getTitle();
         if (title == null || title.isEmpty()) return title;
         return title.substring(0, 1).toUpperCase() + title.substring(1);
     }
-
-
 }
