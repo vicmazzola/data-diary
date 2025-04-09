@@ -2,6 +2,7 @@ package com.example.datadiary.dao;
 
 import com.example.datadiary.model.DiaryEntry;
 import com.example.datadiary.model.Entry;
+import com.example.datadiary.util.OnEntryAddedListener;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface DiaryDAO {
      *
      * @param entry the diary entry to insert
      */
-    void insert(DiaryEntry entry);
+    void insert(DiaryEntry entry, OnEntryAddedListener listener);
 
     /**
      * Updates an existing diary entry in the database.

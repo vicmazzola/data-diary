@@ -8,6 +8,7 @@ import com.example.datadiary.dao.DiaryDAO;
 import com.example.datadiary.data.DatabaseHelper;
 import com.example.datadiary.model.DiaryEntry;
 import com.example.datadiary.model.Entry;
+import com.example.datadiary.util.OnEntryAddedListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +29,7 @@ public class DiaryRepository implements DiaryDAO {
     }
 
     @Override
-    public void insert(DiaryEntry entry) {
+    public void insert(DiaryEntry entry, OnEntryAddedListener callback) {
         // INSERT ENTRY INTO DATABASE
         String sql = "INSERT INTO diary (content_title, due_date, mood, content) VALUES (?,?,?,?)";
         database.execSQL(sql, new Object[]{
@@ -37,6 +38,12 @@ public class DiaryRepository implements DiaryDAO {
                 entry.getMood(),
                 entry.getContent()
         });
+
+        // TRIGGER CALLBACK
+        if(callback != null){
+            callback.onEntryAdded();
+
+        }
 
     }
 

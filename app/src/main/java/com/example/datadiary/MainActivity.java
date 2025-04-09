@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.datadiary.model.DiaryAnalyzer;
 import com.example.datadiary.model.DiaryEntry;
 import com.example.datadiary.model.Entry;
+import com.example.datadiary.repository.DiaryRepository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,24 +80,17 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // GET USER INPUT AND CREATE A DIARY ENTRY OBJECT
+                // CREATE ENTRY OBJECT FROM USER INPUT
                 DiaryEntry entry = getEntryFromFields();
                 DiaryAnalyzer analyzer = new DiaryAnalyzer();
                 analyzer.analyze(this, entry); // this = Context
 
-                // INSERT THE ENTRY INTO THE DATABASE
-                database.execSQL("INSERT INTO diary (content_title, due_date, mood, content) VALUES ('"
-                        + entry.getTitle() + "', '"
-                        + entry.getDate() + "', '"
-                        + entry.getMood() + "', '"
-                        + entry.getContent() + "')");
-
-                // SHOW CONFIRMATION AND CLEAR INPUT FIELDS
-                Toast.makeText(this, "Content added!", Toast.LENGTH_LONG).show();
-                editTitle.setText("");
-                editDate.setText("");
-                editMood.setText("");
-                editContent.setText("");
+                // INSERT ENTRY USING REPOSITORY (DATABASE LOGIC IS HANDLED THERE)
+                DiaryRepository repo = new DiaryRepository(this);
+                repo.insert(entry, () -> {
+                    Toast.makeText(this, "✅ Entry added!", Toast.LENGTH_SHORT).show();
+                    clearInputFields();
+                });
 
 
             } catch (Exception e) {
