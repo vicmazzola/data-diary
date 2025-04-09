@@ -1,6 +1,7 @@
 package com.example.datadiary.dao;
 
 import com.example.datadiary.model.DiaryEntry;
+import com.example.datadiary.model.Entry;
 
 import java.util.List;
 
@@ -32,10 +33,10 @@ public interface DiaryDAO {
     void delete(DiaryEntry entry);
 
     /**
-     * Retrieves all diary entries from the database.
+     * Retrieves all entries from the database.
      *
-     * @return a list of all diary entries
+     * @return a list of entries
      */
-    List<DiaryEntry> getAll();
+    List<Entry> getAll();
 
 }

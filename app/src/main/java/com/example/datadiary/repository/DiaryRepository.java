@@ -54,7 +54,7 @@ public class DiaryRepository implements DiaryDAO {
 
     public List<Entry> getAll() {
         // FETCH ALL ENTRIES FROM DATABASE
-        List<DiaryEntry> entries = new ArrayList<>();
+        List<Entry> entries = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM diary", null);
 
         if (cursor.moveToFirst()) {
