@@ -17,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.datadiary.model.DiaryAnalyzer;
 import com.example.datadiary.model.DiaryEntry;
 import com.example.datadiary.model.Entry;
 
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // GET USER INPUT AND CREATE A DIARY ENTRY OBJECT
                 DiaryEntry entry = getEntryFromFields();
+                DiaryAnalyzer analyzer = new DiaryAnalyzer();
+                analyzer.analyze(this, entry); // this = Context
 
                 // INSERT THE ENTRY INTO THE DATABASE
                 database.execSQL("INSERT INTO diary (content_title, due_date, mood, content) VALUES ('"
