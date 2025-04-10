@@ -102,33 +102,21 @@ public class MainActivity extends AppCompatActivity {
         //LOAD BUTTON
         loadButton.setOnClickListener(v -> {
             try {
-                loadContent();
+                DiaryRepository repo = new DiaryRepository(this);
+
+                List<Entry> entries = repo.getAll();
+
+                StringBuilder result = new StringBuilder();
+                for (Entry entry : entries) {
+                    result.append(entry.getFormattedEntry());
+                }
+
+                textViewResult.setText(result.toString());
+
             } catch (Exception e) {
-                // DISPLAY ERROR MESSAGE IF SOMETHING GOES WRONG
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-        // TODO: Refactor display to support multiple Entry types (e.g., TaskEntry, NoteEntry) using polymorphism
-
-//      Current implementation only uses DiaryEntry, but Entry list already allows extension
-//        loadButton.setOnClickListener(v -> {
-//            try {
-//                DiaryRepository repo = new DiaryRepository(this);
-//
-//                List<Entry> entries = repo.getAll(); // agora é polimórfico
-//
-//                StringBuilder result = new StringBuilder();
-//                for (Entry entry : entries) {
-//                    result.append(entry.getFormattedEntry());
-//                }
-//
-//                textViewResult.setText(result.toString());
-//
-//            } catch (Exception e) {
-//                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
 
 
         // EDIT CONTENT LOGIC
