@@ -1,7 +1,14 @@
 # DataDiary
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=java&logoColor=white)
+![Android](https://img.shields.io/badge/Android_Studio-3DDC84?style=flat&logo=android-studio&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
 
-DataDiary is a simple Android app for writing, editing, and managing personal diary entries using a local SQLite database. It's built with Java and follows object-oriented principles like inheritance and encapsulation.
+DataDiary is a simple Android app for writing, editing, and managing personal diary entries using a local SQLite database.  
+It's designed for learning and practicing Java, Android fundamentals, and OOP concepts like inheritance and encapsulation.
 
+## 🖼️ Preview
+
+- **Coming Soon 📷**
 
 ## Features
 
@@ -19,6 +26,10 @@ DataDiary is a simple Android app for writing, editing, and managing personal di
 - **Database:** SQLite
 - **Architecture:** Object-Oriented Programming (OOP)
 
+## 📁 Project Structure
+
+- **Coming Soon 🔧**
+
 
 ## ▶️ How to Run
 
@@ -35,3 +46,19 @@ git clone https://github.com/vicmazzola/data-diary.git
 # 5. Click 'Run ▶' to launch the app
 
 ```
+
+## 🛣️ Roadmap
+
+- [x] Add Entry feature
+- [x] Edit & Delete entries
+- [ ] RecyclerView for better UI
+- [ ] Improve UI with custom styles
+- [ ] ?
+
+
+---
+
+## 🙌 Credits
+
+Created by [Victor Mazzola](https://github.com/vicmazzola)
+
