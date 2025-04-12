@@ -72,21 +72,24 @@ public class MainActivity extends AppCompatActivity {
         textViewResult = findViewById(R.id.textViewResult);
         textViewMoods = findViewById(R.id.textViewMoods);
 
+        // DISABLE DELETE BUTTON
+        deleteButton.setEnabled(false);
+
 
         // ADD CONTENT LOGIC
         addButton.setOnClickListener(v -> {
             try {
 
-                // VALIDATE IF DATE HAS CORRECT LENGTH AND FORMAT (dd/MM/yyyy)
-                String dateInput = editDate.getText().toString().trim();
+                // CREATE ENTRY OBJECT FROM INPUT
+                DiaryEntry entry = getEntryFromFields();
 
-                if (dateInput.length() != 10 || !dateInput.matches("\\d{2}/\\d{2}/\\d{4}")) {
-                    Toast.makeText(this, "Please enter a valid date (dd/MM/yyyy)", Toast.LENGTH_LONG).show();
+                // VALIDATE IF SOME INPUT IS EMPTY
+                if (entry.getTitle().isEmpty() || entry.getDate().length() != 10 || !entry.getDate().matches("\\d{2}/\\d{2}/\\d{4}") || entry.getMood().isEmpty() || entry.getContent().isEmpty()) {
+                    Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 // CREATE ENTRY OBJECT FROM USER INPUT
-                DiaryEntry entry = getEntryFromFields();
                 DiaryAnalyzer analyzer = new DiaryAnalyzer();
                 analyzer.analyze(this, entry); // this = Context
 
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // SIMULATE CASTING FROM OBJECT TO STRING
-                if(!mood.isEmpty()) {
+                if (!mood.isEmpty()) {
                     Object obj = moodList.get(0); // GENERIC OBJECT
                     String castedMood = (String) obj; // CAST BACK TO STRING
 
@@ -115,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // FOR EACH TO SHOW ALL MOODS
                 StringBuilder moodBuilder = new StringBuilder();
-                for (String currentMood: moodList) {
+                for (String currentMood : moodList) {
                     moodBuilder.append("• ").append(currentMood).append("\n");
                 }
                 textViewMoods.setText(moodBuilder.toString());
@@ -177,6 +180,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                // ENABLE DELETE BUTTON ONLY IF TITLE FIELD IS NOT EMPTY
+                deleteButton.setEnabled(!s.toString().trim().isEmpty());
+
             }
 
             @Override
@@ -220,12 +226,24 @@ public class MainActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(v -> {
             try {
 
+                // CREATE ENTRY OBJECT FROM INPUT
                 DiaryEntry entry = getEntryFromFields();
 
-                database.execSQL("DELETE FROM diary WHERE content_title='" + entry.getTitle() + "'");
-                Toast.makeText(this, "Content deleted!", Toast.LENGTH_LONG).show();
-                clearInputFields();
-                loadContent();
+                new AlertDialog.Builder(this)
+                        .setTitle("Confirm Deletion")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+
+                            //DELETE ENTRY
+                            database.execSQL("DELETE FROM diary WHERE content_title='" + entry.getTitle() + "'");
+                            Toast.makeText(this, "Content deleted!", Toast.LENGTH_LONG).show();
+                            clearInputFields();
+                            loadContent();
+
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+
             } catch (Exception e) {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
