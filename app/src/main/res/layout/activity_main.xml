@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,13 +46,13 @@
             android:layout_marginTop="22dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="12dp"
+            android:background="@drawable/edit_text_background"
             android:hint="@string/editTitle"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
-            android:background="@drawable/edit_text_background"
 
             />
 
@@ -65,6 +65,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="12dp"
+            android:background="@drawable/edit_text_background"
             android:digits="0123456789/"
             android:hint="@string/editDate"
             android:inputType="date"
@@ -72,7 +73,6 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
-            android:background="@drawable/edit_text_background"
 
             />
 
@@ -85,13 +85,13 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="12dp"
+            android:background="@drawable/edit_text_background"
             android:hint="@string/editMood"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
-            android:background="@drawable/edit_text_background"
 
             />
 
@@ -99,20 +99,20 @@
             android:id="@+id/editContent"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:gravity="top|start"
-            android:inputType="textMultiLine"
-            android:lines="6"
-            android:maxLines="10"
-            android:scrollbars="vertical"
-            android:overScrollMode="always"
-            android:background="@drawable/add_content_background"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginBottom="12dp"
+            android:background="@drawable/add_content_background"
+            android:gravity="top|start"
             android:hint="@string/editContent"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            android:maxLines="10"
             android:minHeight="48dp"
+            android:overScrollMode="always"
+            android:scrollbars="vertical"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="italic"
@@ -175,15 +175,21 @@
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/textViewResult"
-            android:layout_width="wrap_content"
+        <!--        <TextView-->
+        <!--            android:id="@+id/textViewResult"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:layout_margin="18dp"-->
+        <!--            android:text="@string/textViewResult"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="16sp" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEntries"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="18dp"
-            android:text="@string/textViewResult"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:layout_margin="16dp" />
 
         <TextView
             android:id="@+id/textViewMoods"

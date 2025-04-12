@@ -2,10 +2,7 @@
 
     <!-- Base application theme -->
     <style name="Base.Theme.DataDiary" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Aqui você pode definir windowBackground, statusBarColor, etc -->
-        <!-- Exemplo:
-        <item name="android:windowBackground">@drawable/purple_gradient</item>
-        -->
+
     </style>
 
     <!-- App theme with custom font -->

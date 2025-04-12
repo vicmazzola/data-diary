@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.datadiary.model.DiaryAnalyzer;
 import com.example.datadiary.model.DiaryEntry;
@@ -32,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     // UI ELEMENTS
     EditText editTitle, editDate, editMood, editContent;
     Button addButton, loadButton, editButton, deleteButton;
-    TextView textViewResult, textViewMoods;
+    TextView textViewMoods;
+    RecyclerView recylerViewEntries;
 
     // DATABASE INSTANCE
     SQLiteDatabase database;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         editButton = findViewById(R.id.editButton);
         loadButton = findViewById(R.id.loadButton);
         deleteButton = findViewById(R.id.deleteButton);
-        textViewResult = findViewById(R.id.textViewResult);
+        recylerViewEntries = findViewById(R.id.recyclerViewEntries);
         textViewMoods = findViewById(R.id.textViewMoods);
 
         // DISABLE DELETE BUTTON
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         // ADD CONTENT LOGIC
         addButton.setOnClickListener(v -> {
+
             try {
 
                 // CREATE ENTRY OBJECT FROM INPUT
@@ -89,7 +92,16 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // CREATE ENTRY OBJECT FROM USER INPUT
+                // CHECK IF AN ENTRY WITH THE SAME TITLE ALREADY EXISTS
+                Cursor cursor = database.rawQuery("SELECT * FROM diary WHERE content_title = ?", new String[]{entry.getTitle()});
+                if (cursor.moveToFirst()) {
+                    Toast.makeText(this, "An entry with this title already exists", Toast.LENGTH_LONG).show();
+                    cursor.close();
+                    return;
+                }
+                cursor.close();
+
+                // ANALYZE ENTRY DATA (CAN BE USED FOR FUTURE INSIGHTS OR TAGGING)
                 DiaryAnalyzer analyzer = new DiaryAnalyzer();
                 analyzer.analyze(this, entry); // this = Context
 
@@ -142,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     result.append(entry.getFormattedEntry());
                 }
 
-                textViewResult.setText(result.toString());
+                recylerViewEntries.setText(result.toString());
 
             } catch (Exception e) {
                 Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -272,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         cursor.close();
-        textViewResult.setText(result.toString());
+        recylerViewEntries.setText(result.toString());
     }
 
 
