@@ -11,4 +11,5 @@
     <string name="enterButton">Access</string>
     <string name="text_view_description">Here you can add some thoughts</string>
     <string name="textViewResult">Content</string>
+    <string name="textViewMoods">Mood List will appear here</string>
 </resources>

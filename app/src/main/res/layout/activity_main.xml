@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="18dp"
+            android:layout_marginTop="30dp"
             android:text="@string/app_name"
             android:textColor="@color/white"
             android:textSize="28sp"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="12dp"
+            android:layout_marginTop="20dp"
             android:text="@string/text_view_description"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -43,9 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="22dp"
             android:layout_marginRight="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/editTitle"
             android:inputType="text"
             android:minHeight="48dp"
@@ -64,7 +64,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="12dp"
             android:digits="0123456789/"
             android:hint="@string/editDate"
             android:inputType="date"
@@ -84,7 +84,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/editMood"
             android:inputType="text"
             android:minHeight="48dp"
@@ -110,7 +110,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="12dp"
             android:hint="@string/editContent"
             android:minHeight="48dp"
             android:textColor="@color/white"
@@ -184,5 +184,16 @@
             android:text="@string/textViewResult"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewMoods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="14dp"
+            android:text="@string/textViewMoods"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
     </LinearLayout>
 </ScrollView>

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,10 +32,13 @@ public class MainActivity extends AppCompatActivity {
     // UI ELEMENTS
     EditText editTitle, editDate, editMood, editContent;
     Button addButton, loadButton, editButton, deleteButton;
-    TextView textViewResult;
+    TextView textViewResult, textViewMoods;
 
     // DATABASE INSTANCE
     SQLiteDatabase database;
+
+    // LIST TO STORE MOODS SEPARATELY FOR PRACTICE
+    ArrayList<String> moodList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         loadButton = findViewById(R.id.loadButton);
         deleteButton = findViewById(R.id.deleteButton);
         textViewResult = findViewById(R.id.textViewResult);
+        textViewMoods = findViewById(R.id.textViewMoods);
 
 
         // ADD CONTENT LOGIC
@@ -91,6 +96,29 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "✅ Entry added!", Toast.LENGTH_SHORT).show();
                     clearInputFields();
                 });
+
+                // ADD MOOD TO THE moodList IF NOT EMPTY
+                String mood = editMood.getText().toString();
+                if (!mood.isEmpty()) {
+                    moodList.add(mood);
+                }
+
+                // SIMULATE CASTING FROM OBJECT TO STRING
+                if(!mood.isEmpty()) {
+                    Object obj = moodList.get(0); // GENERIC OBJECT
+                    String castedMood = (String) obj; // CAST BACK TO STRING
+
+                    // SHOW RESULT
+                    Log.d("CASTING", "First mood (casted): " + castedMood);
+                    Toast.makeText(this, "First mood: " + castedMood, Toast.LENGTH_SHORT).show();
+                }
+
+                // FOR EACH TO SHOW ALL MOODS
+                StringBuilder moodBuilder = new StringBuilder();
+                for (String currentMood: moodList) {
+                    moodBuilder.append("• ").append(currentMood).append("\n");
+                }
+                textViewMoods.setText(moodBuilder.toString());
 
 
             } catch (Exception e) {
