@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Data Diary</string>
+    <string name="app_name_menu">Dashboard</string>
+    <string name="app_name_main">Menu</string>
     <string name="editTitle">Enter Title</string>
     <string name="editDate">Date</string>
     <string name="editMood">Mood</string>
