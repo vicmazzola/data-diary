@@ -17,8 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.datadiary.adapter.EntryAdapter;
 import com.example.datadiary.model.DiaryAnalyzer;
 import com.example.datadiary.model.DiaryEntry;
 import com.example.datadiary.model.Entry;
@@ -71,7 +73,13 @@ public class MainActivity extends AppCompatActivity {
         editButton = findViewById(R.id.editButton);
         loadButton = findViewById(R.id.loadButton);
         deleteButton = findViewById(R.id.deleteButton);
+
+        // CONFIGURE THE RECYCLERVIEW TO DISPLAY ENTRIES AS A VERTICAL LIST
         recylerViewEntries = findViewById(R.id.recyclerViewEntries);
+        recylerViewEntries.setHasFixedSize(true); // IMPROVES PERFORMANCE WHEN SIZE DOESN'T CHANGE
+        recylerViewEntries.setLayoutManager(new LinearLayoutManager(this));  // SETS VERTICAL LAYOUT MANAGER
+
+
         textViewMoods = findViewById(R.id.textViewMoods);
 
         // DISABLE DELETE BUTTON
@@ -144,21 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         //LOAD BUTTON
         loadButton.setOnClickListener(v -> {
-            try {
-                DiaryRepository repo = new DiaryRepository(this);
-
-                List<Entry> entries = repo.getAll();
-
-                StringBuilder result = new StringBuilder();
-                for (Entry entry : entries) {
-                    result.append(entry.getFormattedEntry());
-                }
-
-                recylerViewEntries.setText(result.toString());
-
-            } catch (Exception e) {
-                Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+           loadContent();
         });
 
 
@@ -263,28 +257,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     /**
      * Loads all diary entries from the database and displays them in the result TextView.
      */
-
     private void loadContent() {
-        Cursor cursor = database.rawQuery("SELECT * FROM diary", null);
-        StringBuilder result = new StringBuilder();
-        while (cursor.moveToNext()) {
+        try {
+            DiaryRepository repo = new DiaryRepository(this);
+            List<Entry> entries = repo.getAll();
 
-            DiaryEntry entry = new DiaryEntry(
-                    cursor.getString(1), // title
-                    cursor.getString(2), // date
-                    cursor.getString(3), // mood
-                    cursor.getString(4)  // content
+            EntryAdapter adapter = new EntryAdapter(entries);
+            recylerViewEntries.setAdapter(adapter);
 
-            );
-
-            result.append(entry.getFormattedEntry());
-
+        } catch (Exception e) {
+            Toast.makeText(this, "Error " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        cursor.close();
-        recylerViewEntries.setText(result.toString());
     }
 
 

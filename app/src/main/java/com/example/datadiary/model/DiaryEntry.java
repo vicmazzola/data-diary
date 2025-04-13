@@ -4,9 +4,11 @@ package com.example.datadiary.model;
  * Represents a single diary entry with an additional mood attribute.
  * Inherits common fields and behavior from the Entry superclass.
  */
-public class DiaryEntry extends Entry {
+public class DiaryEntry extends Entry implements Comparable<DiaryEntry> {
 
-    /** Mood of the diary entry */
+    /**
+     * Mood of the diary entry
+     */
     private String mood;
 
     /**
@@ -54,5 +56,17 @@ public class DiaryEntry extends Entry {
         String title = getTitle();
         if (title == null || title.isEmpty()) return title;
         return title.substring(0, 1).toUpperCase() + title.substring(1);
+    }
+
+
+    /**
+     * @param entry the object to be compared.
+     * @return
+     */
+    @Override
+    public int compareTo(DiaryEntry entry) {
+        return this.getTitle().compareTo(entry.getTitle());
+
+
     }
 }

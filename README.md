@@ -51,7 +51,7 @@ git clone https://github.com/vicmazzola/data-diary.git
 
 - [x] Add Entry feature
 - [x] Edit & Delete entries
-- [ ] RecyclerView for better UI
+- [x] RecyclerView for better UI
 - [ ] Improve UI with custom styles
 - [ ] ?
 
