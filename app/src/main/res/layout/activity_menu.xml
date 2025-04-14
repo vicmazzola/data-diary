@@ -47,13 +47,13 @@
             android:src="@drawable/camera" />
 
         <ImageButton
-            android:id="@+id/calendarButton"
+            android:id="@+id/searchButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="24dp"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/menu_icon_calendar"
-            android:src="@drawable/calendar" />
+            android:contentDescription="@string/menu_icon_search"
+            android:src="@drawable/search" />
 
         <ImageButton
             android:id="@+id/calendarButton"

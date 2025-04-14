@@ -19,6 +19,7 @@
     <!-- CONTENT DESCRIPTION  -->
     <string name="menu_icon_list">Access List</string>
     <string name="menu_icon_camera">Access Camera</string>
+    <string name="menu_icon_search">Search</string>
     <string name="menu_icon_calendar">Access Calendar</string>
     <string name="menu_icon_settings">Access Settings</string>
     <string name="menu_icon_info">Access About Section</string>
