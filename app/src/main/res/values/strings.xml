@@ -14,4 +14,14 @@
     <string name="text_view_description">Here you can add some thoughts</string>
     <string name="textViewResult">Content</string>
     <string name="textViewMoods">Mood List will appear here</string>
+
+
+    <!-- CONTENT DESCRIPTION  -->
+    <string name="menu_icon_list">Access List</string>
+    <string name="menu_icon_camera">Access Camera</string>
+    <string name="menu_icon_calendar">Access Calendar</string>
+    <string name="menu_icon_settings">Access Settings</string>
+    <string name="menu_icon_info">Access About Section</string>
+
+
 </resources>

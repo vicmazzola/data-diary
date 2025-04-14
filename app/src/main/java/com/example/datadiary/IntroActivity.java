@@ -15,9 +15,9 @@ public class IntroActivity extends AppCompatActivity {
 
         Button enterButton = findViewById(R.id.startButton);
         enterButton.setOnClickListener(v -> {
-            Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+            Intent intent = new Intent(IntroActivity.this, MenuActivity.class);
             startActivity(intent);
-            finish(); // optional: closes IntroActivity
+            finish();
         });
     }
 }
