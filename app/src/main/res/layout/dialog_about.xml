@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/purple_gradient">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_about_title"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/dialog_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_about_text"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dialog_close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_close_button"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp"
+        app:cornerRadius="16dp"
+        app:backgroundTint="@color/add_button_color" />
+</LinearLayout>

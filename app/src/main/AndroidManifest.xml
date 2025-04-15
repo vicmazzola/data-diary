@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
 
+        <!--   MENU SCREEN  -->
+        <activity android:name=".MenuActivity" />
+
         <!--   MAIN SCREEN  -->
         <activity android:name=".MainActivity" />
 

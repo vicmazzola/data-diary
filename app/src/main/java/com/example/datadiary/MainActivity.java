@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         //LOAD BUTTON
         loadButton.setOnClickListener(v -> {
-           loadContent();
+            loadContent();
         });
 
 
@@ -302,4 +302,6 @@ public class MainActivity extends AppCompatActivity {
                 editContent.getText().toString()
         );
     }
+
+
 }

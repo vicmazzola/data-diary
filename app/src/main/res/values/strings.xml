@@ -24,5 +24,11 @@
     <string name="menu_icon_settings">Access Settings</string>
     <string name="menu_icon_info">Access About Section</string>
 
+    <!-- DIALOG  -->
+    <string name="dialog_about_title">About the app</string>
+    <string name="dialog_about_text">This app was created to record your thoughts, feelings, and important moments of the day.</string>
+    <string name="dialog_close_button">Close</string>
+
+
 
 </resources>
